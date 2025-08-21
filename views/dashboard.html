@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Web Scraping MVP</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Web Scraping Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/search">Search</a></li>
+                <li><a href="/results">Results</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="scraping-status">
+            <h2>Current Scraping Status</h2>
+            <div id="status-message">No scraping in progress.</div>
+            <button id="start-scraping">Start Scraping</button>
+        </section>
+        <section id="job-list">
+            <h2>Saved Jobs</h2>
+            <ul id="jobs">
+                <!-- Job entries will be dynamically populated here -->
+            </ul>
+        </section>
+    </main>
+    <footer>
+        <p>&copy; 2023 Web Scraping MVP</p>
+    </footer>
+    <script src="/js/app.js"></script>
+</body>
+</html>
