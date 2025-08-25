@@ -1,7 +1,7 @@
 {
-  "name": "webscraping-mvp",
+  "name": "event-scraping-mvp",
   "version": "1.0.0",
-  "description": "A minimum viable product for web scraping with a clean user interface.",
+  "description": "A minimum viable product for web scraping events with a clean user interface.",
   "main": "src/app.ts",
   "scripts": {
     "start": "ts-node src/app.ts",
@@ -23,7 +23,7 @@
   },
   "keywords": [
     "web scraping",
-    "jobs",
+    "events",
     "search",
     "MVP"
   ],

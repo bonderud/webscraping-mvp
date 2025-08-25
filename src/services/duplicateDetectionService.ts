@@ -17,3 +17,5 @@ export class DuplicateDetectionService {
         this.existingJobs.clear();
     }
 }
+
+export default DuplicateDetectionService;

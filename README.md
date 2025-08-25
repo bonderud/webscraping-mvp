@@ -1,25 +1,25 @@
-# Web Scraping MVP
+# Event Scraping MVP
 
 ## Overview
-This project is a Minimum Viable Product (MVP) for a web scraping application designed to efficiently scrape job listings from various websites. The application features a clean and simple user interface, robust backend services, and efficient data storage to manage job records.
+This project is a Minimum Viable Product (MVP) for a web scraping application designed to efficiently scrape event listings from various websites. The application features a clean and simple user interface, robust backend services, and efficient data storage to manage event records.
 
 ## Features
-- **Web Scraping**: Automatically scrape job listings from specified websites.
-- **Job Management**: Add, update, and retrieve job records.
-- **Search Functionality**: Perform searches on job listings and view results.
-- **Duplicate Detection**: Identify and manage duplicate job entries to ensure data integrity.
+- **Web Scraping**: Automatically scrape event listings from specified websites.
+- **Event Management**: Add, update, and retrieve event records.
+- **Search Functionality**: Perform searches on event listings and view results.
+- **Duplicate Detection**: Identify and manage duplicate event entries to ensure data integrity.
 - **User Interface**: A clean and responsive UI for easy interaction with the application.
 
 ## Project Structure
 - **src/**: Contains the main application code.
   - **app.ts**: Entry point of the application.
   - **controllers/**: Handles requests and responses.
-  - **models/**: Defines data models for jobs and searches.
+  - **models/**: Defines data models for events and searches.
   - **services/**: Contains business logic for scraping and data storage.
   - **routes/**: Defines API and web routes.
   - **middleware/**: Contains authentication and validation middleware.
   - **database/**: Manages database connections and migrations.
-  - **scrapers/**: Implements specific scraping logic for job sites.
+  - **scrapers/**: Implements specific scraping logic for event sites.
   - **types/**: Common types and interfaces.
 - **public/**: Contains static assets like CSS and JavaScript files.
 - **views/**: HTML templates for the user interface.
@@ -35,7 +35,7 @@ This project is a Minimum Viable Product (MVP) for a web scraping application de
    ```
 2. Navigate to the project directory:
    ```
-   cd webscraping-mvp
+   cd event-scraping-mvp
    ```
 3. Install dependencies:
    ```
@@ -52,7 +52,7 @@ This project is a Minimum Viable Product (MVP) for a web scraping application de
 
 ## Future Enhancements
 - Implement user authentication and authorization.
-- Add support for more job sites.
+- Add support for more event sites.
 - Enhance the search functionality with filters and sorting options.
 - Improve error handling and logging.
 

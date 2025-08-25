@@ -23,3 +23,5 @@ export class BaseScraperService {
         return this.extractData(document);
     }
 }
+
+export default BaseScraperService;

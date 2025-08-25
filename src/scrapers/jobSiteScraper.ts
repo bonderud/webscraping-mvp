@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { JSDOM } from 'jsdom';
-import BaseScraperService from './baseScraperService';
-import Job from '../models/Job';
-import StorageService from '../services/storageService';
-import DuplicateDetectionService from '../services/duplicateDetectionService';
+import { BaseScraperService } from './baseScraperService';
+import { Event } from '../models/Event';
+import { StorageService } from '../services/storageService';
+import { DuplicateDetectionService } from '../services/duplicateDetectionService';
 
-class JobSiteScraper extends BaseScraperService {
+class EventSiteScraper extends BaseScraperService {
     private storageService: StorageService;
     private duplicateDetectionService: DuplicateDetectionService;
 
@@ -15,41 +15,50 @@ class JobSiteScraper extends BaseScraperService {
         this.duplicateDetectionService = new DuplicateDetectionService();
     }
 
-    async scrapeJobs(url: string): Promise<void> {
+    async scrapeEvents(url: string): Promise<void> {
         try {
             const response = await axios.get(url);
             const dom = new JSDOM(response.data);
-            const jobs = this.extractJobs(dom);
+            const events = this.extractEvents(dom);
 
-            for (const job of jobs) {
-                const isDuplicate = await this.duplicateDetectionService.checkForDuplicates(job);
+            for (const event of events) {
+                const isDuplicate = await this.duplicateDetectionService.checkForDuplicates(event.id.toString());
                 if (!isDuplicate) {
-                    await this.storageService.saveJob(job);
+                    await this.storageService.saveEvent(event);
                 }
             }
         } catch (error) {
-            console.error('Error scraping jobs:', error);
+            console.error('Error scraping events:', error);
         }
     }
 
-    private extractJobs(dom: JSDOM): Job[] {
-        const jobs: Job[] = [];
-        const jobElements = dom.window.document.querySelectorAll('.job-listing'); // Adjust selector based on actual site structure
+    private extractEvents(dom: JSDOM): Event[] {
+        const events: Event[] = [];
+        const eventElements = dom.window.document.querySelectorAll<HTMLElement>('.event-listing'); // Adjust selector based on actual site structure
 
-        jobElements.forEach(element => {
-            const title = element.querySelector('.job-title')?.textContent || '';
-            const company = element.querySelector('.company-name')?.textContent || '';
-            const datePosted = element.querySelector('.date-posted')?.textContent || '';
+        eventElements.forEach((element: HTMLElement) => {
+            const name = element.querySelector('.event-name')?.textContent || '';
+            const date = new Date(element.querySelector('.event-date')?.textContent || '');
+            const location = element.querySelector('.event-location')?.textContent || '';
+            const category = element.querySelector('.event-category')?.textContent || '';
+            const price = element.querySelector('.event-price')?.textContent || '';
+            const description = element.querySelector('.event-description')?.textContent || '';
+            const url = element.querySelector('.event-url')?.getAttribute('href') || '';
 
-            jobs.push(new Job({
-                title,
-                company,
-                datePosted,
-            }));
+            events.push({
+                id: Date.now(), // Replace with a unique ID generator if available
+                name,
+                date,
+                location,
+                category,
+                price,
+                description,
+                url
+            });
         });
 
-        return jobs;
+        return events;
     }
 }
 
-export default JobSiteScraper;
+export default EventSiteScraper;
